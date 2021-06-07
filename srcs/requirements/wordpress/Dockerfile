@@ -9,8 +9,8 @@ RUN apt-get install php-curl php-gd php-intl php-mbstring php-soap php-xml php-x
 RUN apt-get install openssl
 RUN apt-get install gettext-base -yq
 
-COPY ./srcs/init_server.sh .
-COPY ./srcs/wordpress_config.php .
-COPY ./srcs/phpmyadmin.conf .
+COPY ./conf/init_server.sh .
+COPY ./conf/wordpress_config.php .
+COPY ./conf/phpmyadmin.conf .
 
 CMD bash init_server.sh
