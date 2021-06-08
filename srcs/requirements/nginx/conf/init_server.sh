@@ -1,3 +1,5 @@
+printf "ok"
+
 #sll
 cd /etc/ssl
 openssl req -x509 -out server.crt -keyout server.key \
