@@ -11,3 +11,8 @@ https://docs.docker.com/engine/reference/commandline/run/
 https://cloud.google.com/architecture/best-practices-for-building-containers
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/\#run
 https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
+
+
+$ docker build . (Build an image from a Dockerfile)
+$ docker run #ContainerId (Run a command in a new container)
+$ docker ps #ContainerId (List containers)
