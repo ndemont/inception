@@ -15,4 +15,5 @@ https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-usin
 
 $ docker build . (Build an image from a Dockerfile)
 $ docker run #ContainerId (Run a command in a new container)
-$ docker ps #ContainerId (List containers)
+$ docker ps #ContainerId (List containers)docker run -p 8080:80 --name test2 -d nginx
+$ docker run -it -p 8080:80 --name nginx -d test
