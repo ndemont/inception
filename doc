@@ -17,3 +17,5 @@ $ docker build . (Build an image from a Dockerfile)
 $ docker run #ContainerId (Run a command in a new container)
 $ docker ps #ContainerId (List containers)docker run -p 8080:80 --name test2 -d nginx
 $ docker run -it -p 8080:80 --name nginx -d test
+$ socker volume create hello
+$ docker volume create WordPress
