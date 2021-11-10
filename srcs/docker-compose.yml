@@ -5,17 +5,17 @@ services:
      context: requirements/nginx/
      dockerfile: Dockerfile
     ports:
-      - "443:80"
+      - "8080:80"
     volumes: 
       - wp_data:/home/login/data
     restart: always
   db:
-    image: mysql:5.7
+    image: mysql
     build: 
      context: requirements/mariadb/
      dockerfile: Dockerfile
     ports:
-      - 3306:3306
+      - 3306:9000
     volumes:
       - db_data:/home/login/data
     restart: always
@@ -33,7 +33,7 @@ services:
      context: requirements/wordpress/
      dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "9000:8080"
     volumes:
       - wp_data:/home/login/data
     restart: always
