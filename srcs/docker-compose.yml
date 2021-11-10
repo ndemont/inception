@@ -1,7 +1,19 @@
 services:
+  nginx:
+    image: nginx
+    build:
+     context: requirements/nginx/
+     dockerfile: Dockerfile
+    ports:
+      - "443:80"
+    volumes: 
+      - wp_data:/home/login/data
+    restart: always
   db:
     image: mysql:5.7
-    build: requirements/mariadb/
+    build: 
+     context: requirements/mariadb/
+     dockerfile: Dockerfile
     ports:
       - 3306:3306
     volumes:
@@ -17,8 +29,10 @@ services:
     depends_on:
       - db
     image: wordpress
-    build: requirements/wordpress/
-    ports:*
+    build:
+     context: requirements/wordpress/
+     dockerfile: Dockerfile
+    ports:
       - "8080:80"
     volumes:
       - wp_data:/home/login/data
