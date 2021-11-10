@@ -4,8 +4,11 @@ services:
     build:
      context: requirements/nginx/
      dockerfile: Dockerfile
+    depends_on:
+     - wordpress
     ports:
-      - "8080:80"
+      - "80:80"
+      - "443:443"
     volumes: 
       - wp_data:/home/login/data
     restart: always
@@ -14,8 +17,8 @@ services:
     build: 
      context: requirements/mariadb/
      dockerfile: Dockerfile
-    ports:
-      - 3306:9000
+    #ports:
+    #  - "3306:9000"
     volumes:
       - db_data:/home/login/data
     restart: always
@@ -24,7 +27,7 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-    
+
   wordpress:
     depends_on:
       - db
@@ -32,8 +35,8 @@ services:
     build:
      context: requirements/wordpress/
      dockerfile: Dockerfile
-    ports:
-      - "9000:8080"
+    #ports:
+    #  - "9000:8080"
     volumes:
       - wp_data:/home/login/data
     restart: always
@@ -42,6 +45,7 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+
 volumes:
   db_data: {}
   wp_data: {}

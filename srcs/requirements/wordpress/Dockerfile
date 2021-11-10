@@ -14,4 +14,6 @@ COPY ./conf/init_server.sh .
 COPY ./conf/wordpress_config.php .
 COPY ./conf/phpmyadmin.conf .
 
+EXPOSE 9000
+
 CMD bash init_server.sh

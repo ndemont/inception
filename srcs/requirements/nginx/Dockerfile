@@ -11,4 +11,7 @@ ENV AUTO_INDEX=on
 COPY ./conf/nginx_config .
 COPY ./conf/init_server.sh .
 
+EXPOSE 80
+EXPOSE 443
+
 CMD bash init_server.sh
