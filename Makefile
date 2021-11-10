@@ -12,3 +12,4 @@ ${NAME}:
 
 #docker run -d -P --name wp --link db:db mariadb
 
+.PHONY:			all clean fclean re bonus
