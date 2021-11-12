@@ -22,8 +22,6 @@ services:
     build: 
      context: requirements/mariadb/
      dockerfile: Dockerfile
-    #ports:
-    #  - "3306:9000"
     volumes:
       - db_data:/home/login/data
     restart: always
@@ -42,8 +40,6 @@ services:
     build:
      context: requirements/wordpress/
      dockerfile: Dockerfile
-    #ports:
-    #  - "9000:8080"
     volumes:
       - wp_data:/home/login/data
     restart: always
