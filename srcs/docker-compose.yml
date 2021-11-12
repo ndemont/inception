@@ -1,8 +1,9 @@
-version: "3"
-
+version: "2"
 services:
   nginx:
     image: nginx
+    networks: 
+      - inception-network
     build:
      context: requirements/nginx/
      dockerfile: Dockerfile
@@ -16,6 +17,8 @@ services:
     restart: always
   db:
     image: mysql
+    networks: 
+     - inception-network
     build: 
      context: requirements/mariadb/
      dockerfile: Dockerfile
@@ -34,6 +37,8 @@ services:
     depends_on:
       - db
     image: wordpress
+    networks:
+      - inception-network
     build:
      context: requirements/wordpress/
      dockerfile: Dockerfile
@@ -51,3 +56,6 @@ services:
 volumes:
   db_data: {}
   wp_data: {}
+
+networks:
+  inception-network:
