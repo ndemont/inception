@@ -12,10 +12,8 @@ mv phpMyAdmin-4.9.7-all-languages /var/www/html/phpmyadmin
 
 #wordpress
 wget https://wordpress.org/latest.tar.gz
-tar -xzvf latest.tar.gz
-chmod 755 wordpress
-mv wordpress /var/www/html
-mv wordpress_config.php /var/www/html/wordpress/wp-config.php
+tar -xzvf latest.tar.gz -C /var/www/html/
+mv /wordpress_config.php /var/www/html/wordpress/wp-config.php
 
 #sll
 cd /etc/ssl

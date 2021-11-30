@@ -13,7 +13,7 @@ services:
       - "80:80"
       - "443:443"
     volumes: 
-      - wp_data:/home/login/data
+      - ${HOME}/data/wp_data:/data
     restart: always
   db:
     image: mysql
@@ -23,7 +23,7 @@ services:
      context: requirements/mariadb/
      dockerfile: Dockerfile
     volumes:
-      - db_data:/home/login/data
+      - ${HOME}/data/db_data:/data
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
@@ -41,8 +41,8 @@ services:
      context: requirements/wordpress/
      dockerfile: Dockerfile
     volumes:
-      - wp_data:/home/login/data
-    restart: always
+      - ${HOME}/data/wp_data:/data
+    #restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
