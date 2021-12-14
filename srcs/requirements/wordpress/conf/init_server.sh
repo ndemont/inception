@@ -15,8 +15,12 @@ mkdir -p /var/www/html
 mv phpMyAdmin-4.9.7-all-languages /var/www/html/phpmyadmin
 
 #wordpress
+mv wordpress /var/www/html
+mv wordpress_config.php /var/www/html/wordpress/wp-config.php
+
 wget https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz -C /var/www/html/
+cp -R /var/www/html /data
 mv /wordpress_config.php /var/www/html/wordpress/wp-config.php
 
 #sll
@@ -27,4 +31,5 @@ openssl req -x509 -out server.crt -keyout server.key \
   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 cd /
 
-/usr/sbin/php-fpm7.3
+bash
+#/usr/sbin/php-fpm7.3
