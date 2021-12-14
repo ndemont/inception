@@ -13,6 +13,7 @@ ENV AUTO_INDEX=on
 COPY ./conf/init_server.sh .
 COPY ./conf/wordpress_config.php .
 COPY ./conf/phpmyadmin.conf .
+COPY ./conf/php-fpm.conf .
 
 EXPOSE 9000
 
