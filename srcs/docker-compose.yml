@@ -1,11 +1,11 @@
-version: "2"
+version: '3'
 services:
   nginx:
     image: nginx
     networks: 
       - inception-network
     build:
-     context: requirements/nginx/
+     context: /home/ndmont/Documents/inception/srcs/requirements/nginx
      dockerfile: Dockerfile
     ports:
       - "80:80"
@@ -17,7 +17,7 @@ volumes:
         wp-data:
                 driver: local
                 driver_opts:
-                        device: /home/ndmont/data/test
+                        device: /home/ndmont/data/wp-data
                         o: bind
                         type: none
 
