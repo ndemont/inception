@@ -51,9 +51,17 @@ services:
 
 volumes:
   db_data:
-    external: true
+        driver: local
+        driver_opts:
+                device: /home/ndmont/data/db_data
+                o: bind
+                type: none
   wp_data:
-    external: true
+          driver: local
+          driver_opts:
+                  device: /home/ndmont/data/wp_data
+                  o: bind
+                  type: none
 
 networks:
   inception-network:
