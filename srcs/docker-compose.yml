@@ -13,7 +13,7 @@ services:
       - "80:80"
       - "443:443"
     volumes: 
-      - ${HOME}/data/wp_data:/data
+      - wp_data:/www/
     restart: always
   db:
     image: mysql
@@ -23,7 +23,7 @@ services:
      context: requirements/mariadb/
      dockerfile: Dockerfile
     volumes:
-      - ${HOME}/data/db_data:/data
+      - db_data:/data
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
@@ -41,7 +41,7 @@ services:
      context: requirements/wordpress/
      dockerfile: Dockerfile
     volumes:
-      - ${HOME}/data/wp_data:/data
+      - wp_data:/www/
     #restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
@@ -50,8 +50,10 @@ services:
       WORDPRESS_DB_NAME: wordpress
 
 volumes:
-  db_data: {}
-  wp_data: {}
+  db_data:
+    external: true
+  wp_data:
+    external: true
 
 networks:
   inception-network:
