@@ -5,21 +5,39 @@ services:
     networks: 
       - inception-network
     build:
-     context: /home/ndmont/Documents/inception/srcs/requirements/nginx
-     dockerfile: Dockerfile
+      context: /home/ndmont/Documents/inception/srcs/requirements/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - wordpress
     ports:
       - "80:80"
       - "443:443"
     volumes: 
-      - wp-data:/www/
-
+      - wp-data:/var/www/html
+    restart: always
+  wordpress:
+    image: wordpress
+    networks:
+      - inception-network
+    build:
+      context: /home/ndmont/Documents/inception/srcs/requirements/wordpress
+      dockerfile: Dockerfile
+    volumes:
+      - wp-data:/var/www/html
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+       
 volumes:
-        wp-data:
-                driver: local
-                driver_opts:
-                        device: /home/ndmont/data/wp-data
-                        o: bind
-                        type: none
+  wp-data:
+    driver: local
+    driver_opts:
+      device: /home/ndmont/data/wp-data
+      o: bind
+      type: none
 
 networks:
   inception-network:
