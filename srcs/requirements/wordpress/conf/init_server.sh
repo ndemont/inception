@@ -31,5 +31,4 @@ openssl req -x509 -out server.crt -keyout server.key \
   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 cd /
 
-bash
-#/usr/sbin/php-fpm7.3
+/usr/sbin/php-fpm7.3

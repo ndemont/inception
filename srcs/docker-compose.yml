@@ -5,7 +5,7 @@ services:
     networks: 
       - inception-network
     build:
-      context: /home/ndmont/Documents/inception/srcs/requirements/nginx
+      context: /home/ndemont/Documents/inception/srcs/requirements/nginx
       dockerfile: Dockerfile
     depends_on:
       - wordpress
@@ -20,7 +20,7 @@ services:
     networks:
       - inception-network
     build:
-      context: /home/ndmont/Documents/inception/srcs/requirements/wordpress
+      context: /home/ndemont/Documents/inception/srcs/requirements/wordpress
       dockerfile: Dockerfile
     volumes:
       - wp-data:/var/www/html
@@ -35,7 +35,7 @@ volumes:
   wp-data:
     driver: local
     driver_opts:
-      device: /home/ndmont/data/wp-data
+      device: /home/ndemont/data/wp-data
       o: bind
       type: none
 
