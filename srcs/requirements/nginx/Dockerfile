@@ -5,7 +5,7 @@ RUN apt-get upgrade -yq
 RUN apt-get install wget curl vim nginx -yq
 RUN apt-get install gettext-base -yq
 
-COPY ./conf/nginx.conf .
+COPY ./conf/nginx.conf /etc/nginx/
 COPY ./conf/init_server.sh .
 
 EXPOSE 80
