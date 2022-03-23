@@ -9,10 +9,8 @@ mkdir /run/php
 mv php-fpm.conf /etc/php/7.3/fpm
 
 #phpmyadmin
-wget https://files.phpmyadmin.net/phpMyAdmin/4.9.7/phpMyAdmin-4.9.7-all-languages.tar.gz
 tar xvf phpMyAdmin-4.9.7-all-languages.tar.gz
 mkdir -p /var/www/html
-mv phpMyAdmin-4.9.7-all-languages /var/www/html/phpmyadmin
 
 #wordpress
 mv wordpress /var/www/html
@@ -20,8 +18,6 @@ mv wordpress_config.php /var/www/html/wordpress/wp-config.php
 
 wget https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz -C /var/www/html/
-cp -R /var/www/html /data
-mv /wordpress_config.php /var/www/html/wordpress/wp-config.php
 
 #sll
 cd /etc/ssl
