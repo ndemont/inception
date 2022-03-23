@@ -5,6 +5,5 @@ openssl req -x509 -out server.crt -keyout server.key \
   -subj '/CN=localhost' -extensions EXT -config <( \
   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 cd /
-cp -R data/wordpress /var/www/html
 
 nginx -g 'daemon off;'
