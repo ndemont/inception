@@ -1,5 +1,21 @@
 version: '3'
+
 services:
+  mysql:
+    image: mariadb
+    networks:
+      - inception-network
+    build:
+      context: /home/ndemont/Documents/inception/srcs/requirements/mariadb
+      dockerfile: Dockerfile
+    volumes:
+      db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_root_pass
+      MYSQL_DATABASE: db_name
+      MYSQL_USER: user_name
+      MYSQL_PASSWORD: user_pass
+    restart: always
   nginx:
     image: nginx
     networks: 
@@ -36,6 +52,12 @@ volumes:
     driver: local
     driver_opts:
       device: /home/ndemont/data/wp-data
+      o: bind
+      type: none
+  db-data:
+    driver: local
+    driver_opts:
+      device: /home/ndemont/data/db-data
       o: bind
       type: none
 

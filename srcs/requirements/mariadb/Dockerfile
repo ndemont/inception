@@ -7,6 +7,8 @@ RUN apt-get install vim -yq
 RUN apt-get install mariadb-server mariadb-client -yq
 RUN apt-get install gettext-base -yq
 
+COPY ./conf/init_server.sh .
+
 EXPOSE 3306
 
-ENV AUTO_INDEX=on
+CMD bash init_server.sh
