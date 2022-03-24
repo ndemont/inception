@@ -9,7 +9,7 @@ services:
       context: /home/ndemont/Documents/inception/srcs/requirements/mariadb
       dockerfile: Dockerfile
     volumes:
-      db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: mysql_root_pass
       MYSQL_DATABASE: db_name
