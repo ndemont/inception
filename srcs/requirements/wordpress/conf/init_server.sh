@@ -19,3 +19,4 @@ openssl req -x509 -out server.crt -keyout server.key \
 cd /
 
 /usr/sbin/php-fpm7.3
+
