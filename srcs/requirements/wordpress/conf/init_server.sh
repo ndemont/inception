@@ -1,7 +1,6 @@
 #php
 mkdir /run/php
-mv php-fpm.conf /etc/php/7.3/fpm
-
+echo "listen = 9000" >> /etc/php/7.3/fpm/pool.d/www.conf
 #wordpress
 mkdir -p /var/www/html
 mv wordpress /var/www/html
@@ -18,5 +17,5 @@ openssl req -x509 -out server.crt -keyout server.key \
   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 cd /
 
-/usr/sbin/php-fpm7.3
+/usr/sbin/php-fpm7.3 -F
 

@@ -11,7 +11,6 @@ RUN apt-get install gettext-base -yq
 
 COPY ./conf/init_server.sh .
 COPY ./conf/wordpress_config.php .
-COPY ./conf/php-fpm.conf .
 
 EXPOSE 9000
 
