@@ -9,4 +9,4 @@ echo "USE wordpress;" | mysql
 
 service mysql stop
 
-mysqld
+exec mysqld --user=root
