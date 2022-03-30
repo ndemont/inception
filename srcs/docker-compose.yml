@@ -6,22 +6,22 @@ services:
     networks:
       - inception-network
     build:
-      context: /home/ndemont/Documents/inception/srcs/requirements/mariadb
+      context: ./requirements/mariadb
       dockerfile: Dockerfile
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: wordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pwd
     restart: always
   nginx:
     image: nginx
     networks: 
       - inception-network
     build:
-      context: /home/ndemont/Documents/inception/srcs/requirements/nginx
+      context: ./requirements/nginx
       dockerfile: Dockerfile
     depends_on:
       - wordpress
@@ -36,7 +36,7 @@ services:
     networks:
       - inception-network
     build:
-      context: /home/ndemont/Documents/inception/srcs/requirements/wordpress
+      context: ./requirements/wordpress
       dockerfile: Dockerfile
     depends_on:
       - mysql
@@ -44,22 +44,23 @@ services:
       - wp-data:/var/www/html
     restart: always
     environment:
-      WORDPRESS_DB_HOST: wordpress
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      MYSQL_ROOT_PASSWORD: rootpwd
+      WORDPRESS_DB_HOST: host
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: pwd
+      WORDPRESS_DB_NAME: wp
        
 volumes:
   wp-data:
     driver: local
     driver_opts:
-      device: /home/ndemont/data/wp-data
+      device: $HOME/data/wp-data
       o: bind
       type: none
   db-data:
     driver: local
     driver_opts:
-      device: /home/ndemont/data/db-data
+      device: $HOME/data/db-data
       o: bind
       type: none
 
