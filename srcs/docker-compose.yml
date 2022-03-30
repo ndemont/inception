@@ -10,11 +10,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - db-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpwd
-      MYSQL_DATABASE: db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pwd
+    env_file:
+      - .env
     restart: always
   nginx:
     image: nginx
@@ -43,12 +40,8 @@ services:
     volumes:
       - wp-data:/var/www/html
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpwd
-      WORDPRESS_DB_HOST: host
-      WORDPRESS_DB_USER: user
-      WORDPRESS_DB_PASSWORD: pwd
-      WORDPRESS_DB_NAME: wp
+    env_file:
+      - .env
        
 volumes:
   wp-data:
