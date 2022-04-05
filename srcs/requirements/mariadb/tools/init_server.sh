@@ -2,14 +2,24 @@
 
 set -xve
 
+whoami
+
+mysql_install_db --user=mysql --data=/var/lib/mysql --auth-root-authentication-method=normal
+
+whoami
+
 service mysql start
 
-echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;" | mysql -u root
-echo "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" | mysql -u root
-echo "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';" | mysql -u root
-echo "FLUSH PRIVILEGES;" | mysql -u root
-echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');" | mysql 
+whoami
 
-service mysql stop
+echo "CREATE DATABASE IF NOT EXISTS wp;" | mysql -u root
+echo "CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'pwd';" | mysql -u root
+echo "GRANT ALL ON wp.* TO 'user'@'%';" | mysql -u root
+echo "FLUSH PRIVILEGES;" | mysql -u root
+
+# mv /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+service mysql status
+/etc/init.d/mysql stop
 
 mysqld --user=mysql

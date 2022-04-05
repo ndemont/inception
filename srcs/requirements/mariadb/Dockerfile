@@ -17,4 +17,4 @@ RUN chmod +x ./init_server.sh
 RUN chmod +x /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN mysql_install_db --user=mysql --data=/var/lib/mysql --auth-root-authentication-method=normal
 
-CMD ["bash", "init_server.sh"]
+CMD ["bash"]
