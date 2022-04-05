@@ -1,24 +1,24 @@
 version: '3'
 
 services:
-  mysql:
+  mariadb:
     image: mariadb
     networks:
       - inception-network
     build:
-      context: ./requirements/mariadb
+      context: /home/ndemont/Documents/inception/srcs/requirements/mariadb
       dockerfile: Dockerfile
     volumes:
       - db-data:/var/lib/mysql
+    restart: always
     env_file:
       - .env
-    restart: always
   nginx:
     image: nginx
     networks: 
       - inception-network
     build:
-      context: ./requirements/nginx
+      context: /home/ndemont/Documents/inception/srcs/requirements/nginx
       dockerfile: Dockerfile
     depends_on:
       - wordpress
@@ -29,31 +29,31 @@ services:
       - wp-data:/var/www/html
     restart: always
   wordpress:
-    image: wordpress
+    image: wordpres
+    env_file:
+      - .env
     networks:
       - inception-network
     build:
-      context: ./requirements/wordpress
+      context: /home/ndemont/Documents/inception/srcs/requirements/wordpress
       dockerfile: Dockerfile
     depends_on:
-      - mysql
+      - mariadb
     volumes:
       - wp-data:/var/www/html
     restart: always
-    env_file:
-      - .env
-       
+  
 volumes:
   wp-data:
     driver: local
     driver_opts:
-      device: $HOME/data/wp-data
+      device: /home/ndemont/data/wp-data
       o: bind
       type: none
   db-data:
     driver: local
     driver_opts:
-      device: $HOME/data/db-data
+      device: /home/ndemont/data/db-data
       o: bind
       type: none
 
