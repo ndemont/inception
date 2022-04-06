@@ -16,5 +16,9 @@ stop:
 	sudo docker-compose -f srcs/docker-compose.yml stop
 rm: stop
 	sudo docker-compose -f srcs/docker-compose.yml rm
+clean: stop
+	sudo docker rm -f $(docker ps -q -a)
+	sudo docker rmi $(docker images -q -a)
+
 
 .PHONY:			all clean fclean re bonus
