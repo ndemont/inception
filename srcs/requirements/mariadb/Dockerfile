@@ -7,14 +7,17 @@ RUN apt-get install mariadb-server -yq
 RUN apt-get install mariadb-client -yq
 RUN apt-get install procps -yq
 
-COPY ./tools/init_server.sh .
-COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-
 RUN mkdir /run/mysqld
 RUN chown mysql /run/mysqld
+RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal
 
-RUN chmod +x ./init_server.sh
+COPY ./tools/init_server.sh .
+COPY ./tools/mariadb.sql .
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+RUN chmod 777 /var/lib/mysql
+RUN chmod 777 ./init_server.sh
+RUN chmod 777 ./mariadb.sql
 RUN chmod +x /etc/mysql/mariadb.conf.d/50-server.cnf
-RUN mysql_install_db --user=mysql --data=/var/lib/mysql --auth-root-authentication-method=normal
 
-CMD ["bash"]
+CMD ["./init_server.sh"]

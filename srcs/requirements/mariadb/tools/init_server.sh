@@ -2,24 +2,33 @@
 
 set -xve
 
-whoami
-
-mysql_install_db --user=mysql --data=/var/lib/mysql --auth-root-authentication-method=normal
-
-whoami
-
 service mysql start
 
-whoami
+# chmod 777 /var/run/mysqld/mysqld.sock
 
-echo "CREATE DATABASE IF NOT EXISTS wp;" | mysql -u root
-echo "CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'pwd';" | mysql -u root
-echo "GRANT ALL ON wp.* TO 'user'@'%';" | mysql -u root
-echo "FLUSH PRIVILEGES;" | mysql -u root
+# mysqld_safe &
 
-# mv /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+# sleep 5
 
-service mysql status
-/etc/init.d/mysql stop
+# pwd
+# mysql < mariadb.sql
 
-mysqld --user=mysql
+echo "CREATE DATABASE IF NOT EXISTS wp;" | mysql
+echo "CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'pwd';" | mysql
+echo "GRANT ALL ON wp.* TO 'user'@'%';" | mysql
+echo "FLUSH PRIVILEGES;" | mysql
+# echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');" | mysql
+
+# service mysql status
+
+# service mysqld stop
+# /etc/init.d/mysqld stop
+# mysqladmin -u root -p shutdown
+
+# chmod 777 /var/run/mysqld/mysqld.sock
+# ls -l /var/run/mysqld/
+
+# service mysql status
+service mysql stop 
+
+exec mysqld -u mysql
