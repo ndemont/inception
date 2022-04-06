@@ -17,7 +17,7 @@ echo "CREATE DATABASE IF NOT EXISTS wp;" | mysql
 echo "CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'pwd';" | mysql
 echo "GRANT ALL ON wp.* TO 'user'@'%';" | mysql
 echo "FLUSH PRIVILEGES;" | mysql
-# echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');" | mysql
+echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');" | mysql
 
 # service mysql status
 
