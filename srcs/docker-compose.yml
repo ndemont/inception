@@ -29,7 +29,7 @@ services:
       - wp-data:/var/www/html
     restart: always
   wordpress:
-    image: wordpres
+    image: wordpress
     env_file:
       - .env
     networks:

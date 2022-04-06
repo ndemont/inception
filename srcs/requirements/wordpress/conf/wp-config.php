@@ -1,16 +1,16 @@
 <?php
 
 /** The name of the database for WordPress */
-define( 'DB_NAME', '$MYSQL_DATABASE' );
+define( 'DB_NAME', 'wordpress' );
 
 /** MySQL database username */
-define( 'DB_USER', '$MYSQL_USER' );
+define( 'DB_USER', 'wpuser' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '$MYSQL_PASSWORD' );
+define( 'DB_PASSWORD', 'wppwd' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '$DB_HOST' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -31,8 +31,9 @@ define('NONCE_SALT',       'TRb&.1%<w.}#3M-/i@iqihTl*9=SQ=tVjXt?j /PUo;vJMN h[3`
 
 $table_prefix = 'wp_';
 
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
+define( 'WP_DEBUG_LOG', true );
 
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
