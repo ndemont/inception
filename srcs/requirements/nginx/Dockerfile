@@ -6,7 +6,8 @@ RUN apt-get install wget curl vim nginx -yq
 RUN apt-get install gettext-base -yq
 
 COPY ./conf/nginx.conf /etc/nginx/
-COPY ./conf/init_server.sh .
+COPY ./conf/hosts /etc/hosts
+COPY ./tools/init_server.sh .
 
 EXPOSE 80
 EXPOSE 443
