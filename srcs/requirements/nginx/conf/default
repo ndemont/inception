@@ -36,7 +36,6 @@ server {
         add_header Content-Type application/x-javascript;
     }
 
-
     location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
 		fastcgi_pass wordpress:9000;

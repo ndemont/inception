@@ -11,7 +11,15 @@ RUN apt-get install gettext-base -yq
 
 COPY ./tools/init_server.sh .
 COPY ./conf/wp-config.php .
-COPY ./conf/www.conf .
+COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+
+RUN mkdir /run/php
+RUN mkdir -p /var/www/html
+RUN curl -O https://wordpress.org/latest.tar.gz
+RUN tar -xzvf latest.tar.gz -C /var/www/html/
+RUN chmod 777 /var/www/html/wordpress
+RUN envsubst < wp-config.php > /var/www/html/wordpress/wp-config.php
+RUN chmod 777 /var/www/html/wordpress/wp-config.php
 
 EXPOSE 9000
 
