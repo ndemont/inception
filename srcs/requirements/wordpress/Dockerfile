@@ -1,5 +1,7 @@
 FROM debian:buster
 
+EXPOSE 9000
+
 RUN apt-get update -yq
 RUN apt-get upgrade -yq
 RUN apt-get install curl -yq
@@ -13,14 +15,19 @@ COPY ./tools/init_server.sh .
 COPY ./conf/wp-config.php .
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
+# WORDPRESS CONFIGURATION
 RUN mkdir /run/php
 RUN mkdir -p /var/www/html
 RUN curl -O https://wordpress.org/latest.tar.gz
 RUN tar -xzvf latest.tar.gz -C /var/www/html/
 RUN chmod 777 /var/www/html/wordpress
-RUN envsubst < wp-config.php > /var/www/html/wordpress/wp-config.php
-RUN chmod 777 /var/www/html/wordpress/wp-config.php
+# RUN envsubst < wp-config.php > /var/www/html/wordpress/wp-config.php
+# RUN chmod 777 /var/www/html/wordpress/wp-config.php
 
-EXPOSE 9000
+# WORDPRESS INSTALLATION
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+RUN wp core download --allow-root
 
 CMD bash init_server.sh
