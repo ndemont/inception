@@ -1,4 +1,6 @@
 FROM debian:buster
+EXPOSE 80
+EXPOSE 443
 
 RUN apt-get update -yq
 RUN apt-get upgrade -yq
@@ -8,11 +10,5 @@ RUN apt-get install gettext-base -yq
 COPY ./conf/nginx.conf /etc/nginx/
 COPY ./conf/default /etc/nginx/sites-enabled/
 COPY ./tools/init_server.sh .
-
-EXPOSE 80
-EXPOSE 443
-
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 CMD bash init_server.sh
