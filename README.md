@@ -1,22 +1,22 @@
 # inception
 
-Ce projet consistera à vous faire mettre en place une mini-infrastructure de différents
-services en suivant des règles spécifiques. L’intégralité de ce projet est à réaliser dans une
-machine virtuelle. Pour ce faire, vous devrez obligatoirement utiliser docker-compose.
-Chaque image Docker devra obligatoirement porter le même nom que le service
-concerné.
-Chaque service devra tourner dans un container dédié.
-Pour des raisons de performance, les containers devront être build au choix : soit sous
-Alpine Linux avec l’avant-dernière version stable, soit sous Debian Buster.
-Aussi, ils devront chacun posséder leur propre Dockerfile écrit par vos soins. Les
-Dockerfiles seront appelés dans votre fichier docker-compose.yml par votre Makefile.
-Vous devrez donc build vous-même les images Docker que vous utiliserez. Il est bien entendu interdit d’en prendre des toutes faites, de même qu’utiliser des services tels que
-DockerHub (Alpine et Debian étant exclus de cette règle).
-Vous allez donc devoir mettre en place :
-• Un container Docker contenant NGINX avec TLSv1.2 ou TLSv1.3 uniquement.
-• Un container Docker contenant WordPress + php-fpm (installé et configuré) uniquement sans nginx.
-• Un container Docker contenant MariaDB uniquement sans nginx.
-• Un volume contenant votre base de données WordPress.
-• Un second volume contenant les fichiers de votre site WordPress.
-• Un docker-network qui fera le lien entre vos containers.
-Vos containers devront redémarrer en cas de crash.
+This project consists in having you set up a small infrastructure composed of different
+services under specific rules. The whole project has to be done in a virtual machine. You
+have to use docker-compose.
+Each Docker image must have the same name as its corresponding service.
+Each service has to run in a dedicated container.
+For performance matters, the containers must be built either from the penultimate stable
+version of Alpine Linux, or from Debian Buster. The choice is yours.
+You also have to write your own Dockerfiles, one per service. The Dockerfiles must
+be called in your docker-compose.yml by your Makefile.
+It means you have to build yourself the Docker images of your project. It is then forbidden to pull ready-made Docker images, as well as using services such as DockerHub
+(Alpine/Debian being excluded from this rule).
+You then have to set up:
+• A Docker container that contains NGINX with TLSv1.2 or TLSv1.3 only.
+• A Docker container that contains WordPress + php-fpm (it must be installed and
+configured) only without nginx.
+• A Docker container that contains MariaDB only without nginx.
+• A volume that contains your WordPress database.
+• A second volume that contains your WordPress website files.
+• A docker-network that establishes the connection between your containers.
+Your containers have to restart in case of a crash.
